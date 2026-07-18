@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>LWU - Student Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+    .custom-dashboard-font {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    }
+    
+    .clean-card {
+        background: #121826;
+        border: 1px solid #1e293b;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .clean-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        border-color: #334155;
+    }
+</style>
+{% endblock meta %}
+
+{% block content %}
+{% include 'header.html' %}
+
+<div class="min-h-[calc(100vh-6rem)] bg-gradient-to-br from-[#070D1E] via-[#0F1E36] to-[#E2E8F0] text-slate-800 antialiased font-sans">
+    <main class="py-12 px-6 md:px-12 max-w-5xl mx-auto space-y-10">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-800 pb-8">
+            <div class="space-y-1.5">
+                <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+                    Hello!
+                </h1>
+                <p class="text-white/70 text-sm font-light">
+                    One step closer to your target score today.
+                </p>
+            </div>  
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <div class="clean-card rounded-2xl p-6 flex items-center justify-between">
+                <div class="space-y-1">
+                    <span class="text-xs font-semibold text-white/70 block tracking-wider uppercase">Active Courses</span>
+                    <span class="text-2xl font-bold text-white">2 Remaining</span>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                </div>
+            </div>
+
+            <div class="clean-card rounded-2xl p-6 flex flex-col justify-between gap-4">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-semibold text-white/70 block tracking-wider uppercase">Weekly Learning Goal</span>
+                    <span class="text-xs font-bold text-white">7.5 / 10 Hours</span>
+                </div>
+                <div class="w-full bg-slate-800 rounded-full h-2.5">
+                    <div class="bg-indigo-500 h-2.5 rounded-full" style="width: 75%"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">
+            
+            <div class="lg:col-span-3 space-y-8">
+                
+                <div class="clean-card rounded-2xl p-8 space-y-6">
+                    <div class="space-y-3">
+                        <span class="text-[10px] tracking-widest font-bold text-indigo-400 uppercase">Today's Recommendation</span>
+                        <h3 class="text-xl md:text-2xl font-bold text-white leading-tight">Writing Task 2: Coherence & Cohesion</h3>
+                        <p class="text-xs md:text-sm text-white/70 font-light leading-relaxed max-w-md">
+                            This module is designed to lift your Writing estimate from Band 6.5 to a target of Band 7.0+.
+                        </p>
+                    </div>
+                    
+                    <div class="pt-2">
+                        <a href="#" class="inline-flex items-center gap-2 text-xs font-bold text-slate-950 bg-white hover:bg-slate-100 px-6 py-4 rounded-xl transition-all shadow-md">
+                            Start Practice
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="text-xs font-bold tracking-wider uppercase text-white/70">Recent Activity</h4>
+                    <div class="divide-y divide-slate-100">
+                        
+                        <div class="py-4 flex justify-between items-center">
+                            <div>
+                                <h5 class="text-sm font-bold text-white">Reading Mock Test #3</h5>
+                                <p class="text-[11px] text-white/50 font-light">Completed on July 18, 2026</p>
+                            </div>
+                        </div>
+
+                        <div class="py-4 flex justify-between items-center">
+                            <div>
+                                <h5 class="text-sm font-bold text-white">Speaking Practice: Part 2</h5>
+                                <p class="text-[11px] text-white/50 font-light">Completed on July 15, 2026</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-2 space-y-4">
+                
+                <h3 class="text-xs font-bold text-white/70 tracking-wider pl-1 uppercase">Continue Learning</h3>
+                
+                <div class="clean-card rounded-2xl p-8 space-y-6">
+                    <div class="space-y-4">
+                        <span class="text-[10px] font-bold text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-3 py-1 rounded-full uppercase tracking-wider inline-block">
+                            Progress 65%
+                        </span>
+                        
+                        <h4 class="font-extrabold text-white text-lg leading-snug">
+                            Writing Task 2: Coherence & Cohesion
+                        </h4>
+                        
+                        <p class="text-white/70 text-xs leading-relaxed font-light">
+                            Resume the pending video lesson on Paragraph Structuring. Only 2 topics left before the evaluation quiz.
+                        </p>
+                    </div>
+                    
+                    <div class="pt-4 border-t border-slate-800">
+                        <a href="#" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-400 hover:text-indigo-300 transition-colors">
+                            Resume Course
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+</div>
+{% endblock content %}

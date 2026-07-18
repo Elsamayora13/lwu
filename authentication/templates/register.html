@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Learning With Us</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased flex min-h-screen items-center justify-center p-4">
+
+    <div class="w-full max-w-md bg-white p-8 rounded-3xl shadow-xl shadow-slate-100 border border-slate-200/60 my-8">
+        
+        <div class="text-center mb-8">
+            <div class="inline-block bg-[#003366] px-5 py-2.5 rounded-lg text-white mb-4 shadow-md font-sans font-black tracking-tighter text-2xl select-none">
+                LWU
+            </div>
+            <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Create Account</h2>
+            <p class="text-sm text-slate-500 mt-2">Join Learning With Us to start your IELTS journey.</p>
+        </div>
+
+        {% if form.errors %}
+            <div class="mb-5 p-3.5 rounded-lg bg-rose-50 text-rose-700 text-xs font-medium border border-rose-200">
+                Please check your information and try again.
+            </div>
+        {% endif %}
+
+        <form method="POST" id="registerForm" class="space-y-5">
+            {% csrf_token %}
+
+            <div class="relative">
+                <input type="text" name="username" id="id_username" required maxlength="150" placeholder=" " class="peer w-full px-4 pt-6 pb-2 text-sm bg-white border border-slate-300 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-50 focus:border-[#003366] transition-all duration-200">
+                <label for="id_username" class="absolute left-4 top-4 text-sm text-slate-400 pointer-events-none transition-all duration-200 peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-focus:top-1.5 peer-focus:text-xs peer-focus:text-[#003366] peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-xs">Username</label>
+                {% for error in form.username.errors %}
+                    <p class="text-[11px] text-rose-600 mt-1 ml-1 font-medium">* {{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="relative">
+                <input type="email" name="email" id="id_email" required placeholder=" " class="peer w-full px-4 pt-6 pb-2 text-sm bg-white border border-slate-300 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-50 focus:border-[#003366] transition-all duration-200">
+                <label for="id_email" class="absolute left-4 top-4 text-sm text-slate-400 pointer-events-none transition-all duration-200 peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-focus:top-1.5 peer-focus:text-xs peer-focus:text-[#003366] peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-xs">Email</label>
+                {% for error in form.email.errors %}
+                    <p class="text-[11px] text-rose-600 mt-1 ml-1 font-medium">* {{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="relative">
+                <input type="password" name="password1" id="id_password1" required placeholder=" " class="peer w-full px-4 pt-6 pb-2 text-sm bg-white border border-slate-300 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-50 focus:border-[#003366] transition-all duration-200">
+                <label for="id_password1" class="absolute left-4 top-4 text-sm text-slate-400 pointer-events-none transition-all duration-200 peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-focus:top-1.5 peer-focus:text-xs peer-focus:text-[#003366] peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-xs">Password</label>
+                
+                <div id="passwordRulesContainer" class="invisible opacity-0 max-h-0 peer-focus:visible peer-focus:opacity-100 peer-focus:max-h-45 transition-all duration-300 ease-in-out overflow-hidden mt-3 p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-1.5 text-[11px] text-slate-500 leading-normal">
+                    <p id="rule-length" class="flex items-center gap-1.5">• Must contain at least 8 characters.</p>
+                    <p id="rule-numeric" class="flex items-center gap-1.5">• Cannot be entirely numeric.</p>
+                    <p id="rule-match" class="flex items-center gap-1.5">• Password confirmation must match.</p>
+                </div>
+                
+                {% for error in form.password1.errors %}
+                    <p class="text-[11px] text-rose-600 mt-1 ml-1 font-medium">* {{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="relative">
+                <input type="password" name="password2" id="id_password2" required placeholder=" " class="peer w-full px-4 pt-6 pb-2 text-sm bg-white border border-slate-300 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-50 focus:border-[#003366] transition-all duration-200">
+                <label for="id_password2" class="absolute left-4 top-4 text-sm text-slate-400 pointer-events-none transition-all duration-200 peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-focus:top-1.5 peer-focus:text-xs peer-focus:text-[#003366] peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-xs">Password Confirmation</label>
+                {% for error in form.password2.errors %}
+                    <p class="text-[11px] text-rose-600 mt-1 ml-1 font-medium">* {{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <div class="pt-2">
+                <button type="submit" class="w-full flex items-center justify-center gap-2 py-3.5 px-4 border border-transparent rounded-2xl shadow-md shadow-blue-100 text-sm font-semibold text-white bg-[#003366] hover:bg-[#002244] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#003366] transition-all active:scale-[0.98]">
+                    Register Account
+                </button>
+            </div>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-slate-100 text-center text-sm text-slate-500">
+            Already have an account?
+            <a href="{% url 'login' %}" class="font-semibold text-[#003366] hover:underline transition">
+                Login
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        const p1 = document.getElementById('id_password1');
+        const p2 = document.getElementById('id_password2');
+        
+        const container = document.getElementById('passwordRulesContainer');
+        const ruleLength = document.getElementById('rule-length');
+        const ruleNumeric = document.getElementById('rule-numeric');
+        const ruleMatch = document.getElementById('rule-match');
+
+        function validatePassword() {
+            const val1 = p1.value;
+            const val2 = p2.value;
+
+            let lengthValid = val1.length >= 8;
+            let numericValid = val1.length > 0 && !(/^\d+$/.test(val1));
+            let matchValid = val1 && val2 && val1 === val2;
+
+            if (lengthValid) {
+                ruleLength.style.display = 'none';
+            } else {
+                ruleLength.style.display = 'block';
+                ruleLength.className = val1.length > 0 ? "text-rose-500 font-medium" : "text-slate-400";
+            }
+
+            if (val1.length > 0) {
+                if (numericValid) {
+                    ruleNumeric.style.display = 'none';
+                } else {
+                    ruleNumeric.style.display = 'block';
+                    ruleNumeric.className = "text-rose-500 font-medium";
+                }
+            } else {
+                ruleNumeric.style.display = 'block';
+                ruleNumeric.className = "text-slate-400";
+                numericValid = false;
+            }
+
+            if (val1 && val2) {
+                if (matchValid) {
+                    ruleMatch.style.display = 'none';
+                    p2.setCustomValidity("");
+                } else {
+                    ruleMatch.style.display = 'block';
+                    ruleMatch.className = "text-rose-500 font-medium";
+                    p2.setCustomValidity("Passwords do not match");
+                }
+            } else {
+                ruleMatch.style.display = 'block';
+                ruleMatch.className = "text-slate-400";
+                p2.setCustomValidity("");
+                matchValid = false;
+            }
+
+            if (lengthValid && numericValid && (!val2 || matchValid)) {
+                if (val2 && matchValid) {
+                    container.style.display = 'none';
+                } else {
+                    container.style.display = 'block';
+                }
+            } else {
+                container.style.display = 'block';
+            }
+        }
+
+        p1.addEventListener('input', validatePassword);
+        p2.addEventListener('input', validatePassword);
+    </script>
+</body>
+</html>

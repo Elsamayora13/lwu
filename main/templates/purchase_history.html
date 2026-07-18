@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>LWU - Riwayat Pembelian</title>
+{% endblock meta %}
+
+{% block content %}
+{% include 'header.html' %}
+
+<div class="min-h-[calc(100vh-6rem)] bg-gradient-to-br from-[#070D1E] via-[#0F1E36] to-[#E2E8F0] text-slate-800 antialiased font-sans">
+    <main class="py-12 px-6 md:px-12 max-w-5xl mx-auto space-y-10">
+
+        <div class="space-y-1 border-b border-slate-800 pb-8">
+            <h1 class="text-3xl font-extrabold text-white tracking-tight">Riwayat Pembelian</h1>
+            <p class="text-white/70 text-sm">Semua transaksi kursus dan e-book kamu ada di sini.</p>
+        </div>
+
+        <div class="bg-[#121826] border border-slate-800 rounded-2xl overflow-hidden">
+            <div class="divide-y divide-slate-800">
+                {% for purchase in purchases %}
+                <div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+
+                    <div class="space-y-1">
+                        <h3 class="text-sm font-bold text-white leading-snug">{{ purchase.item }}</h3>
+                        <p class="text-xs text-white/50">{{ purchase.invoice }} &middot; {{ purchase.date }}</p>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <span class="text-sm font-bold text-white">{{ purchase.amount }}</span>
+
+                        {% if purchase.status == "Paid" %}
+                        <span class="text-[11px] font-bold text-emerald-400 bg-emerald-500/10 emerald-500/20 px-3 py-1 rounded-full uppercase tracking-wider">
+                            Paid
+                        </span>
+                        {% elif purchase.status == "Pending" %}
+                        <span class="text-[11px] font-bold text-amber-400 bg-amber-500/10 amber-500/20 px-3 py-1 rounded-full uppercase tracking-wider">
+                            Pending
+                        </span>
+                        {% else %}
+                        <span class="text-[11px] font-bold text-rose-400 bg-rose-500/10 rose-500/20 px-3 py-1 rounded-full uppercase tracking-wider">
+                            Failed
+                        </span>
+                        {% endif %}
+                    </div>
+
+                </div>
+                {% empty %}
+                <div class="p-12 text-center text-white/50 text-sm">
+                    Belum ada riwayat pembelian.
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </main>
+</div>
+{% endblock content %}

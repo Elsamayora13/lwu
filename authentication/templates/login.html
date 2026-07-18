@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Learning With Us</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased flex min-h-screen items-center justify-center p-4">
+
+    <div class="w-full max-w-md bg-white p-8 rounded-3xl shadow-xl shadow-slate-100 border border-slate-200/60 my-8">
+        
+        <div class="text-center mb-8">
+            <div class="inline-block bg-[#003366] px-5 py-2.5 rounded-lg text-white mb-4 shadow-md font-sans font-black tracking-tighter text-2xl select-none">
+                LWU
+            </div>
+            <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Welcome Back</h2>
+            <p class="text-sm text-slate-500 mt-2">Sign in to continue your IELTS learning experience.</p>
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="mb-5 p-3.5 rounded-lg bg-rose-50 text-rose-700 text-xs font-medium border border-rose-200">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST" class="space-y-5">
+            {% csrf_token %}
+
+            <div class="relative">
+                <input type="text" name="username" id="id_username" required placeholder=" " class="peer w-full px-4 pt-6 pb-2 text-sm bg-white border border-slate-300 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-50 focus:border-[#003366] transition-all duration-200">
+                <label for="id_username" class="absolute left-4 top-4 text-sm text-slate-400 pointer-events-none transition-all duration-200 peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-focus:top-1.5 peer-focus:text-xs peer-focus:text-[#003366] peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-xs">Username</label>
+            </div>
+
+            <div class="relative">
+                <input type="password" name="password" id="id_password" required placeholder=" " class="peer w-full px-4 pt-6 pb-2 text-sm bg-white border border-slate-300 rounded-2xl shadow-sm focus:outline-none focus:ring-4 focus:ring-blue-50 focus:border-[#003366] transition-all duration-200">
+                <label for="id_password" class="absolute left-4 top-4 text-sm text-slate-400 pointer-events-none transition-all duration-200 peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm peer-focus:top-1.5 peer-focus:text-xs peer-focus:text-[#003366] peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-xs">Password</label>
+            </div>
+
+            <div class="flex items-center justify-between px-1 text-xs">
+                <label class="flex items-center gap-2 text-slate-500 cursor-pointer select-none">
+                    <input type="checkbox" name="remember" class="w-4 h-4 rounded border-slate-300 text-[#003366] focus:ring-[#003366]">
+                    Remember me
+                </label>
+                <a href="#" class="font-medium text-[#003366] hover:underline transition">Forgot password?</a>
+            </div>
+
+            <div class="pt-2">
+                <button type="submit" class="w-full flex items-center justify-center gap-2 py-3.5 px-4 border border-transparent rounded-2xl shadow-md shadow-blue-100 text-sm font-semibold text-white bg-[#003366] hover:bg-[#002244] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#003366] transition-all active:scale-[0.98]">
+                    Sign In
+                </button>
+            </div>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-slate-100 text-center text-sm text-slate-500">
+            Don't have an account?
+            <a href="{% url 'register' %}" class="font-semibold text-[#003366] hover:underline transition">
+                Register here
+            </a>
+        </div>
+
+    </div>
+</body>
+</html>
